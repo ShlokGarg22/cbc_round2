@@ -7,20 +7,6 @@ console.log('🔑 Don\'t forget to collect the key to open doors!');
 // Difficulty configurations
 // Legend: S=start, K=key, D=door, F=flag, #=wall, .=open
 const DIFFICULTIES = {
-    easy: {
-        // Easy maze: Must get key (right), backtrack, then go down through door.
-        // Unique path forces teaching: key first, then door, then flag.
-        // Coordinates (y,x): Start (1,1), Key (1,3), Door (2,2), Flag (3,2)
-        maze: [
-            ['#','#','#','#','#'], // 0
-            ['#','S','.','K','#'], // 1  S -> right -> right -> key
-            ['#','.','D','.','#'], // 2  Door blocks descent
-            ['#','.','F','.','#'], // 3  Flag below door
-            ['#','#','#','#','#']  // 4
-        ],
-        start: {x:1,y:1},
-        hint: 'Easy: Get key (2 rights), left, down to door, open, down to flag.'
-    },
     medium: {
         maze: [
             ['#','#','#','#','#','#','#'],
@@ -33,29 +19,6 @@ const DIFFICULTIES = {
         ],
         start: {x:1,y:1},
         hint: 'Medium: key → door → flag (optimal around 12 moves).'
-    },
-    hard: {
-        // Hard maze (new validated design):
-        // Structure:
-        //  - Upper horizontal run to key with a single access point.
-        //  - Must return to central shaft to descend to door (only opening in barrier row).
-        //  - Post-door labyrinth forces a detour before reaching flag bottom-right.
-        // Key at (6,1), Door at (3,5), Flag at (8,8), Start at (1,1)
-        // Guarantee: No path to flag without passing through door; no door without key.
-        maze: [
-            ['#','#','#','#','#','#','#','#','#','#'], // 0
-            ['#','S','.','.','#','.','K','.','.','#'], // 1 corridor to key gated by wall at x4
-            ['#','.','#','.','#','.','#','#','.','#'], // 2 vertical channel continues
-            ['#','.','#','.','.','.','.','#','.','#'], // 3 open mid section right side
-            ['#','.','#','#','#','#','.','#','.','#'], // 4 pre-barrier alignment
-            ['#','.','D','.','#','#','.','#','.','#'], // 5 barrier row with single door at x2
-            ['#','.','.','.','.','.','.','#','.','#'], // 6 open field after door
-            ['#','#','#','#','#','.','#','#','.','#'], // 7 forcing path bend
-            ['#','.','.','.','.','.','.','.','F','#'], // 8 flag chamber
-            ['#','#','#','#','#','#','#','#','#','#']  // 9 border
-        ],
-        start: {x:1,y:1},
-        hint: 'Hard: Reach key (R R R), back L, descend to door, then wind around to bottom-right flag.'
     }
 };
 
